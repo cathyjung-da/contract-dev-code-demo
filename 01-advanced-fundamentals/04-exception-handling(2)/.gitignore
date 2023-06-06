@@ -1,5 +1,5 @@
 /.daml
 /log
 navigator.log
-/errors
+errors/
 .gitattributes
