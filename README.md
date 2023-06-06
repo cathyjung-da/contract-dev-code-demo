@@ -7,7 +7,11 @@ At the top level of the repository, you will find folders representing each [cou
 
 Within each course folder, you will find subfolders representing individual lessons within the course. For instance, the `01-functional-programming(1)` folder inside `01-advanced-fundamentals` corresponds to a specific lesson within the "Advanced Fundamentals" course.
 
+![file-tree1](./img/file-tree1.png)
+
 The daml directory within each lesson folder contains the code demos used for specific slides within the lesson. For example, the file `CollectiveDataTypes.daml` contains the code demo used for the "Collective Data Types" slide within the lesson. These code demos are designed to illustrate and clarify the main concepts covered in each lesson.
+
+![file-tree2](./img/file-tree2.png)
 
 ## Intentional Errors in Code Demos
 Please note that deliberate errors may be present in the code demos to highlight specific error scenarios to the audience. If you encounter errors in the code, please refer to the lesson slide and read the speaker's notes to confirm whether the error is intentional or not before making a pull request to fix it.
