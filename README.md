@@ -1,9 +1,9 @@
 # Contract Developer Code Demo Repository
 
-Welcome to the **contract-dev-code-demo** repository! This repository contains all the code demonstrations used in the lessons for the Contract Developer certification program.
+Welcome to the **contract-dev-code-demo** repository! This repository contains all the code demonstrations used in the lessons for the [Contract Developer certification program](https://docs.google.com/spreadsheets/d/1-5tbm9YXFXJb-s4rUhyxdZkOrP5fuzhB90D0F7Q4E9I/edit#gid=1161341563).
 
 ## Repository Structure
-At the top level of the repository, you will find folders representing each course within the Contract Developer certification program. For example, the `01-advanced-fundamentals` folder corresponds to the "Advanced Fundamentals" course.
+At the top level of the repository, you will find folders representing each [course](https://drive.google.com/drive/folders/1QkXu5MC0fTR-8tJfQcgQWQvJcr-yjZLF) within the Contract Developer certification program. For example, the `01-advanced-fundamentals` folder corresponds to the "Advanced Fundamentals" course.
 
 Within each course folder, you will find subfolders representing individual lessons within the course. For instance, the `01-functional-programming(1)` folder inside `01-advanced-fundamentals` corresponds to a specific lesson within the "Advanced Fundamentals" course.
 
