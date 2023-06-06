@@ -1,0 +1,25 @@
+-- https://docs.google.com/presentation/d/1PgU3wXIeXfj_LWzeuwHaYmlFl6hRGi007z5F3cbsd3I/edit#slide=id.g24673e94a57_0_147
+module InformativeTypes where
+
+import Daml.Script 
+
+
+someFunction: Int -> Either Text Int
+someFunction x =
+   if (x < 0) then
+        Left "Error"
+   else Right (x + 2)
+
+
+testSF = script do
+    debug $ someFunction (-2)
+    debug $ someFunction 2
+
+
+safeDiv : Int -> Int -> Optional Int
+safeDiv _ 0 = None
+safeDiv x y = Some (x / y)
+
+testSD = script do
+    debug $ safeDiv 6 0 
+    debug $ safeDiv 6 2 

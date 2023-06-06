@@ -1,0 +1,8 @@
+-- https://docs.google.com/presentation/d/1CFp5AILj7Xnp3FXqkDgLeS4kLitc6vBMjujc7tHoLnE/edit#slide=id.g23dba75931f_0_193
+module Record where
+
+import Daml.Script
+
+data PersonalRecord = PersonalRecord with
+    name : Text
+    id : Int

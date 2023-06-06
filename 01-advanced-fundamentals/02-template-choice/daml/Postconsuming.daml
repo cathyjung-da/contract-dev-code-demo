@@ -1,0 +1,41 @@
+-- https://docs.google.com/presentation/d/18E--M4W2_11OKi9MUo7TUQj7SnF6o0U088e5bjIG2yQ/edit#slide=id.g23e19aad89c_0_9
+module Postconsuming where
+
+import Daml.Script
+
+
+template SocialNetworkUser
+    with
+        username: Party
+        following: [Party]
+        alias: Text
+    where
+        signatory username
+        observer following
+
+        key username : Party 
+        maintainer key 
+
+        ensure alias /= ""
+
+        -- postconsuming choice Follow: ContractId SocialNetworkUser
+        --     with
+        --         userToFollow: Party
+        --     controller username
+        --     do       
+        --         assertMsg "You cannot follow yourself" (userToFollow /= username)
+        --         assertMsg "You cannot follow the same user twice" (notElem userToFollow following)
+                
+        --         create this with following = userToFollow :: following
+
+
+        nonconsuming choice Follow: ContractId SocialNetworkUser
+            with
+                userToFollow: Party
+            controller username
+            do       
+                assertMsg "You cannot follow yourself" (userToFollow /= username)
+                assertMsg "You cannot follow the same user twice" (notElem userToFollow following)
+                archive self
+
+                create this with following = userToFollow :: following

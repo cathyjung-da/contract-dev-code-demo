@@ -1,0 +1,48 @@
+-- https://docs.google.com/presentation/d/16P0d8DKpFJioHq2A2ykzrB374mTaOLxPX_d1vXQKzdc/edit#slide=id.g1fa130259fc_0_17
+module CollectiveDataTypes where
+
+import Daml.Script
+
+import DA.List (head, tail)
+import DA.Tuple (snd3)
+import DA.Set as Set
+import DA.Map as Map
+
+listTest = script do
+    let
+        fruitList = ["orange", "apple", "banana"]
+
+    debug $ fruitList -- ["orange","apple","banana"]
+    debug $ head fruitList -- "orange"
+    debug $ tail fruitList -- ["apple","banana"]
+
+tupleTest = script do
+    let
+        twoTuple = ("abc", 123)
+        threeTuple = ("a", 456, True)
+        nTuple = (1, "hello", True, [3,4])
+
+    debug $ snd3 threeTuple -- 456
+    debug $ nTuple -- (1,"hello",True,[3,4])
+    debug $ nTuple._2 -- "hello"
+
+setTest = script do
+    let
+        fruitSet: Set Text
+        fruitSet = Set.empty
+        fruitList = ["apple", "banana", "cherry", "apple"]
+        fruitSet = Set.fromList fruitList
+
+    debug $ fruitSet -- Set ["apple","banana","cherry"]
+
+mapTest = script do
+    let
+        wordMap: Map Text Text
+        wordMap = Map.empty
+        words = [("a", "apple"), ("b", "banana")]
+        wordMap = Map.fromList words
+
+    debug $ wordMap -- Map [("a","apple"),("b","banana")]
+
+    -- debug $ (+) 2 3
+    

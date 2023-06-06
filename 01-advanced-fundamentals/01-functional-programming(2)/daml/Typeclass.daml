@@ -1,0 +1,11 @@
+-- https://docs.google.com/presentation/d/1CFp5AILj7Xnp3FXqkDgLeS4kLitc6vBMjujc7tHoLnE/edit#slide=id.g23dba75931f_0_61
+module Typeclass where
+
+import Daml.Script
+
+
+testTypeclass : Script ()
+testTypeclass = script do
+    debug $ show "hello"  -- Text is an instance of Show typeclass
+    debug $ "hello" == "hello"  -- Text is an instance of Eq typeclass
+

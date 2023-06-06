@@ -1,0 +1,19 @@
+-- https://docs.google.com/presentation/d/18E--M4W2_11OKi9MUo7TUQj7SnF6o0U088e5bjIG2yQ/edit#slide=id.g23e19aad89c_0_0
+module TemplateStructure where
+
+import Daml.Script
+
+
+template SocialNetworkUser
+    with
+        username: Party
+        following: [Party]
+        alias: Text
+    where
+        signatory username
+        observer following
+
+        key username : Party 
+        maintainer key 
+
+        ensure alias /= ""

@@ -1,0 +1,37 @@
+-- https://docs.google.com/presentation/d/1CFp5AILj7Xnp3FXqkDgLeS4kLitc6vBMjujc7tHoLnE/edit#slide=id.g23dba75931f_0_1243
+module CustomTypeclass where
+
+import Daml.Script
+import DA.Text (sha256)
+
+data PersonalRecord = PersonalRecord with
+    name : Text
+    id : Int
+    -- func: Text -> Text
+        -- deriving (Show, Eq)
+
+
+instance Show PersonalRecord where
+    show PersonalRecord {name,id} = "PersonalRecord {name = " <> show name <> ", id = 123" <> show id <> "}"
+    -- show myRecord = "PersonalRecord {name = " <> show myRecord.name <> ", id = 123" <> show myRecord.id <> "}"
+    -- show PersonalRecord{name,id} = "PersonalRecord {name = " <> show name <> ", id = 123" <> show id <> ", func = <function>}"
+
+    
+class Hashable i o where
+    hash : i -> o
+
+instance Hashable PersonalRecord Text where 
+    hash myRecord = sha256 (myRecord.name <> show(myRecord.id))
+
+
+test = script do
+    let 
+        someData = PersonalRecord with
+            name = "Alice"
+            id = 123
+    
+        hashedData : Text
+        hashedData = hash someData
+
+    debug $ someData
+    debug $ hashedData
