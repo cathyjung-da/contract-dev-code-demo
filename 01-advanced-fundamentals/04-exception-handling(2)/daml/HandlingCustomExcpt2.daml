@@ -1,4 +1,4 @@
-module HandlingCustomException where
+module HandlingCustomExcpt2 where
 
 import Daml.Script
 import DA.Exception
@@ -27,7 +27,24 @@ template SocialNetworkUser
                 assertMsg "You cannot follow the same user twice" (notElem userToFollow following)
                 create this with following = userToFollow :: following
 
-        nonconsuming choice ChangeAlias: ContractId SocialNetworkUser
+        -- nonconsuming choice ChangeAlias: Either ChangeFailed (ContractId SocialNetworkUser)
+        --     with
+        --         newAlias: Text
+        --     controller username
+        --     do
+        --         try do
+        --             archive self
+        --             cid <- create this with alias = newAlias 
+        --             let result = Right cid 
+        --             pure result
+        --         catch
+        --             (PreconditionFailed _) -> do
+        --                 result <- throw ChangeFailed with 
+        --                     fieldName = "alias"
+        --                     details = "cannot be an empty string"
+        --                 pure $ Left result
+
+        nonconsuming choice ChangeAlias: Either Text (ContractId SocialNetworkUser)
             with
                 newAlias: Text
             controller username
@@ -38,20 +55,24 @@ template SocialNetworkUser
                             fieldName = "alias"
                             details = "cannot be an empty string"
                     else do
-                        archive self 
-                        create this with alias = newAlias
+                        archive self
+                        cid <- create this with alias = newAlias 
+                        let result = Right cid 
+                        pure result
                 catch
-                    -- (ChangeFailed f d) -> do
-                    --     -- return self
-                    --     trace (f <> " " <> d) (return self)
+                    (ChangeFailed f d) -> do
+                        let result = Left $ f <> " " <> d
+                        pure result
 
-                    -- (e: ChangeFailed) -> do
-                    --     debug e 
-                    --     trace (e.fieldName <> " " <> e.details)(return self)
-                    --     -- trace (message e) (return self)
+                    (e: ChangeFailed) -> do
+                        debug e 
+                        debug $ message e
+                        let result = Left $ e.fieldName <> " " <> e.details
+                        pure result
 
                     (e: AnyException) -> do
-                        trace (message e) (return self)
+                        let result = Left $ message e
+                        pure result
 
 
 -- Custom Exception
