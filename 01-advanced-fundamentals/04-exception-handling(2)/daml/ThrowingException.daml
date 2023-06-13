@@ -63,3 +63,38 @@ test = script do
     submit alice do 
         exerciseCmd aliceCid ChangeAlias with newAlias = ""
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- case ver.
+-- nonconsuming choice ChangeAlias: Either Text (ContractId SocialNetworkUser)
+--     with
+--         newAlias: Text
+--     controller username
+--     do
+--         case newAlias of
+--             "" -> do
+--                 let 
+--                     err = ChangeFailed with 
+--                         fieldName = "alias"
+--                         details = "cannot be empty"
+--                     result = Left $ err.fieldName <> " " <> err.details
+--                 pure result
+
+--             _ -> do
+--                 archive self
+--                 cid <- create this with alias = newAlias
+--                 let result = Right cid 
+--                 pure result
