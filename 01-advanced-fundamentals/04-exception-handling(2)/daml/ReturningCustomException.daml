@@ -1,8 +1,7 @@
-module TryCatch where
+module ReturningCustomException where
 
 import Daml.Script
 import DA.Exception
-
 
 template SocialNetworkUser
     with
@@ -27,21 +26,7 @@ template SocialNetworkUser
                 assertMsg "You cannot follow the same user twice" (notElem userToFollow following)
                 create this with following = userToFollow :: following
 
-        -- nonconsuming choice ChangeAlias: ContractId SocialNetworkUser
-        --     with
-        --         newAlias: Text
-        --     controller username
-        --     do
-        --         try do
-        --             archive self
-        --             create this with alias = newAlias 
-        --         catch
-        --             (PreconditionFailed _) -> do
-        --                 debug "Alias cannot be an empty string. Try again."
-        --                 pure self 
-        --                 -- trace "Alias cannot be an empty string. Try again." (pure self)
-
-        nonconsuming choice ChangeAlias: Either Text (ContractId SocialNetworkUser)
+        nonconsuming choice ChangeAlias: Either ChangeAlias (ContractId SocialNetworkUser)
             with
                 newAlias: Text
             controller username
@@ -53,18 +38,23 @@ template SocialNetworkUser
                     pure result
                 catch
                     (PreconditionFailed _) -> do
-                        let result = Left "Alias cannot be an empty string. Try again."
-                        pure result
+                        throw ChangeFailed with 
+                            fieldName = "alias"
+                            details = "cannot be an empty string"
                         
-                    -- (PreconditionFailed ea) -> do
-                    --     debug ea 
-                    --     let result = Left ea
-                    --     pure result
+                        -- result <- throw ChangeFailed with 
+                        --     fieldName = "alias"
+                        --     details = "cannot be an empty string"
+                        -- pure $ Left result
 
-                    -- (e : PreconditionFailed) -> do
-                    --     debug $ message e 
-                    --     let result = Left $ message e 
-                    --     pure result
+
+-- Custom Exception
+exception ChangeFailed
+    with
+        fieldName: Text
+        details: Text
+    where
+        message "Provided input is invalid."
 
 
 test = script do
@@ -79,7 +69,4 @@ test = script do
     
     submit alice do 
         exerciseCmd aliceCid ChangeAlias with newAlias = ""
-
-    -- submit alice do 
-    --     exerciseCmd aliceCid ChangeAlias with newAlias = "ExpertDamler"
 
