@@ -1,0 +1,14 @@
+module RecordTypes where
+
+import Daml.Script
+
+-- data AlternativeCoordinate a b = AlternativeCoordinate a b
+data Coordinate a b = Coordinate {first: a; second: b}
+    deriving (Eq, Show)
+
+testC = script do 
+    let
+        cdn : Coordinate Int Int 
+        cdn = Coordinate 1 2
+
+    debug $ cdn
