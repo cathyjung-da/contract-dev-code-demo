@@ -6,3 +6,5 @@ import Daml.Script
 data PersonalRecord = PersonalRecord with
     name : Text
     id : Int
+
+-- data PersonalRecord = PersonalRecord {name : Text; id : Int}
