@@ -1,5 +1,5 @@
 -- https://docs.google.com/presentation/d/16P0d8DKpFJioHq2A2ykzrB374mTaOLxPX_d1vXQKzdc/edit#slide=id.g1fa130259fc_0_17
-module CollectiveDataTypes where
+module CollectionDataTypes where
 
 import Daml.Script
 
