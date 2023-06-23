@@ -50,14 +50,14 @@ testAction1 = script do
     allAccounts <- query @BankAccount bank
     debug $ allAccounts
 
-    debug $ map (\x -> show x) [1,2,3]
+    debug $ map (\x -> show x) [1,2,3] -- debug $ map show [1,2,3]
     -- map (\x -> debug x) [1,2,3]
 
-    mANum <- mapA (\x -> debug x) [1,2,3]
-    debug $ mANum
+    mapADebug <- mapA (\x -> debug x) [1,2,3]
+    debug $ mapADebug
 
-    mAAcc <- mapA (\x -> debug x) allAccounts 
-    debug $ mAAcc
+    mapADebugAcc <- mapA (\x -> debug x) allAccounts 
+    debug $ mapADebugAcc
 
     updatedAcc <- mapA (\x -> submit bank do exerciseCmd x._1 ApplyInterest) allAccounts
     debug $ updatedAcc
