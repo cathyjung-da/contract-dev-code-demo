@@ -9,7 +9,7 @@ Within each course folder, you will find subfolders representing individual less
 
 ![file-tree1](./img/file-tree1.png)
 
-The daml directory within each lesson folder contains the code demos used for specific slides within the lesson. For example, the file `CollectiveDataTypes.daml` contains the code demo used for the "Collective Data Types" slide within the lesson. These code demos are designed to illustrate and clarify the main concepts covered in each lesson.
+The daml directory within each lesson folder contains the code demos used for specific slides within the lesson. For example, the file `CollectionDataTypes.daml` contains the code demo used for the "Collection Data Types" slide within the lesson. These code demos are designed to illustrate and clarify the main concepts covered in each lesson.
 
 ![file-tree2](./img/file-tree2.png)
 
