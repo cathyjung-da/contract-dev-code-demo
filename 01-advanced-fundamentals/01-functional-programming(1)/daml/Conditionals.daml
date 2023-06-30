@@ -1,32 +1,74 @@
--- https://docs.google.com/presentation/d/16P0d8DKpFJioHq2A2ykzrB374mTaOLxPX_d1vXQKzdc/edit#slide=id.g23a26c16a23_0_1289
 module Conditionals where
 
 import Daml.Script 
 
+-- if-then-else
 oddOrEven: Int -> Text
 oddOrEven x =
    if (x % 2 == 0) then "even"
    else "odd"
 
-
-findBmi: Decimal -> Decimal -> Text
-findBmi height weight -- in meters & kg
-   | weight / (height ^ 2) <= 18.5 = "Underweight"
-   | weight / (height ^ 2) <= 25.0 = "Normal"
-   | weight / (height ^ 2) <= 30.0 = "Overweight"
-   | otherwise = "Obese"
+testOdd = script do
+   debug $ oddOrEven 3
 
 
-boundBmi: Decimal -> Decimal -> Text
-boundBmi height weight -- in meters & kg
-   | bmi <= 18.5 = "Underweight"
-   | bmi <= 25.0 = "Normal"
-   | bmi <= 30.0 = "Overweight"
-   | otherwise = "Obese"
-   where bmi = weight / (height ^ 2)
+
+-- Guards
+classifyNumber: Int -> Text
+classifyNumber n 
+   | n > 0 && n % 2 == 0 = "positive and even"
+   | n > 0 && n % 2 /= 0 = "positive and odd"
+   | n < 0 && n % 2 == 0 = "negative and even"
+   | n < 0 && n % 2 /= 0 = "negative and odd"
+   | otherwise = "zero"
+
+testCN = script do 
+   debug $ classifyNumber (-23)
+
+boundClassifyNumber: Int -> Text
+boundClassifyNumber n 
+   | n > 0 && even = "positive and even"
+   | n > 0 && not even = "positive and odd"
+   | n < 0 && even = "negative and even"
+   | n < 0 && not even = "negative and odd"
+   | otherwise = "zero"
+   where even = n % 2 == 0
+
+testBCN = script do
+   debug $ boundClassifyNumber 23
 
 
+
+-- case-of (pattern matching)
 isEven : Int -> Text
 isEven x = case (x % 2) of
-    0 -> "even"
-    _ -> "not even" 
+   0 -> "even"
+   _ -> "not even" 
+
+testEven = script do
+   debug $ isEven 2
+   debug $ isEven 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
