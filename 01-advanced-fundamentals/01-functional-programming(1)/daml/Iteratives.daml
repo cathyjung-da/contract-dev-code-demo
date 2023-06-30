@@ -1,8 +1,9 @@
--- https://docs.google.com/presentation/d/16P0d8DKpFJioHq2A2ykzrB374mTaOLxPX_d1vXQKzdc/edit#slide=id.g23a26c16a23_0_940
 module Iteratives where
 
 import Daml.Script 
 
+
+-- Recursion
 factorial: Int -> Int
 factorial n = 
    if (n < 2) then 1 
@@ -23,6 +24,10 @@ testFac = script do
 --       else factorial' (acc * n') $ n' - 1
 
 
+
+-- Map
+-- map : (a -> b) -> [a] -> [b]
+-- cf. fmap(<$>): generic version of map
 moduloUsingMap: [Int] -> Int -> [Int]
 moduloUsingMap x y = map (% y) x
 
@@ -30,6 +35,9 @@ testMap = script do
    debug $ moduloUsingMap [14, 15, 19, 20] 3  --[2,0,1,2]
 
 
+-- Fold
+-- foldl : (b -> a -> b) -> b -> [a] -> b
+-- cf. foldr: right associative version of foldl
 sumList: [Int] -> Int
 sumList x = foldl (+) 0 x
 

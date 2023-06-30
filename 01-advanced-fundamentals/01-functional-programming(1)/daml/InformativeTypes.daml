@@ -1,8 +1,9 @@
--- https://docs.google.com/presentation/d/16P0d8DKpFJioHq2A2ykzrB374mTaOLxPX_d1vXQKzdc/edit#slide=id.g23a26c16a23_0_1294
 module InformativeTypes where
 
 import Daml.Script 
 
+
+-- Either
 someFunction: Int -> Either Text Int
 someFunction x =
    if (x < 0) then
@@ -15,6 +16,11 @@ testSF = script do
     debug $ someFunction 2
 
 
+
+
+
+
+-- Optional
 safeDiv : Int -> Int -> Optional Int
 safeDiv _ 0 = None
 safeDiv x y = Some (x / y)
@@ -22,3 +28,31 @@ safeDiv x y = Some (x / y)
 testSD = script do
     debug $ safeDiv 6 0 
     debug $ safeDiv 6 2 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
