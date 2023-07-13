@@ -5,11 +5,13 @@ data One = One
 
 -- One
 
+
 data Two
     = Two_a
     | Two_b
 
 -- Two_a, Two_b
+
 
 data Sum_One_Two
     = A_One One
@@ -20,12 +22,18 @@ data Sum_One_Two
 
 
 
+
+
 data Product_Two_Two = Product_Two_Two
     with
         side1 : Two
         side2 : Two  
-
+        
 -- Product_Two_Two with side1 = Two_a; side2 = Two_a,
 -- Product_Two_Two with side1 = Two_a; side2 = Two_b,
 -- Product_Two_Two with side1 = Two_b; side2 = Two_a,
 -- Product_Two_Two with side1 = Two_b; side2 = Two_b
+
+
+
+

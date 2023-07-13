@@ -13,9 +13,11 @@ testFL = script do
     debug $ fl
 
 
+
 data MySumType = MySumConstructor1 Int
                 | MySumConstructor2 (Text, Bool)
                     deriving (Eq, Show)
+
 
 testMST = script do
     let
@@ -24,6 +26,61 @@ testMST = script do
 
     debug $ mySum1
     debug $ mySum2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

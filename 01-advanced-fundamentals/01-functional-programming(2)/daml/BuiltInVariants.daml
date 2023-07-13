@@ -14,9 +14,9 @@ testB = script do
     debug $ bln
 
 
-
 data Optional a = None | Some a 
     deriving (Eq,Show)
+
 
 testO = script do 
     let 
@@ -28,3 +28,24 @@ testO = script do
 
     debug $ os
     debug $ on
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

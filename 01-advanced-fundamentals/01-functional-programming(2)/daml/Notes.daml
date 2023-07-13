@@ -2,6 +2,7 @@ module Notes where
 
 import Daml.Script
 
+
 data Confusing = Int
     deriving (Eq, Show)
 
@@ -13,15 +14,17 @@ testC = script do
     debug $ c
 
 
-data Foo = Foo
-    deriving (Eq, Show)
 
-testF = script do 
-    let 
-        f : Foo 
-        f = Foo
+-- data Foo = Foo
+--     deriving (Eq, Show)
+
+-- testF = script do 
+--     let 
+--         f : Foo 
+--         f = Foo
     
-    debug $ f
+--     debug $ f
+
 
 
 -- data Foo = Foo {}
@@ -35,12 +38,13 @@ testF = script do
 --     debug $ f
 
 
--- data Foo = Foo ()
---     deriving (Eq, Show)
 
--- testF = script do 
---     let 
---         f : Foo 
---         f = Foo ()
+data Foo = Foo ()
+    deriving (Eq, Show)
+
+testF = script do 
+    let 
+        f : Foo 
+        f = Foo ()
     
---     debug $ f
+    debug $ f
